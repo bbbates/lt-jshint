@@ -4,4 +4,5 @@
   [:js-hinted :lt.objs.editor.lint/register-linter [:lt.plugins.lt-jshint/js-hinter {}]]
 
   [:editor.javascript :lt.object/add-tag :js-hinted]
+  [:editor.javascript :lt.object/add-tag :docable] ;; required to show lint messages below the line
  ]
