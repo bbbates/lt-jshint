@@ -10,7 +10,7 @@
                 :triggers [:lt.objs.editor.lint/validate]
                 :behaviors [::do-jshint]
                 :linter-name "jshint"
-                :init (fn [this js-hint-opts]
+                :init (fn [this _ js-hint-opts]
                         (object/merge! this {:options js-hint-opts})))
 
 (behavior ::do-jshint
@@ -18,12 +18,15 @@
           :reaction (fn [obj editor-text callback _]
                       (js/JSHINT editor-text (clj->js (:options @obj)) #js {})
                       (let [results (js->clj (.data js/JSHINT) :keywordize-keys true)
-                            errors (map (fn [err]
-                                          {:message (:reason err)
-                                           :severity :error
-                                           :from [(dec (:line err)) (dec (:character err))]
-                                           :to [(dec (:line err)) (+ (:character err)
-                                                                     (count (or (:evidence err) "")))]})
+                            errors (map (fn [{:keys [evidence reason character line] :as err}]
+                                          (let [start (dec character)
+                                                start (if (<= (count evidence) start) (- start 2) start)
+                                                rem (subs evidence start)
+                                                end (+ start (.indexOf rem (re-find #".\b" rem)))]
+                                            {:message reason
+                                             :severity :error ;;TODO: make this a bit smarter
+                                             :from [(dec line) start]
+                                             :to [(dec line) end]}))
                                         (:errors results))]
                         (callback errors))))
 

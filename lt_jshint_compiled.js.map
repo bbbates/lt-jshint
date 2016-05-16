@@ -3,13 +3,15 @@
  "compiled.map",
  "sources":
  ["src/lt/plugins/lt_jshint.cljs"],
- "lineCount":28,
+ "lineCount":23,
  "mappings":
- ";AAAA;;;;;;;;;;;;AAQA,iCAAA,sGAAA,6DAAA,mFAAA,0GAAA,8DAAA,mFAAA,8GAAA,mEAAA,SAAA,5sBAACA,iwBAIqB,+BAAA,pBAAKC,MAAKC,cACR,6CAAA,2CAAA,jFAACC,gCAAcF,4GAAeC;;AAEtD,AAAA,AAAAE,wCAAA,uDAAA,5BAEyBE,IAAIC,YAAYC,SAASC,GAC5B,4KAAA,5KAACC,OAAUH,YAAY,AAACI,+BAAQ,AAAA,yFAAA,AAAAC,0BAAWN;AAC3C,IAAMO,UAAQ,6CAAA,2EAAA,xHAACC,+BAAQ,AAAOJ,mGACxBK,SAAO,AAACC,wBAAI;uBAAA,AAAA,kDAAA,uJAAA,6DAAA,uDAAA,qDAAA,iSAAA,iDAAA,zsBAAKC,kHACO,AAAA,uFAASA,iQAEX,2FAAA,1FAAK,AAAA,mFAAOA,UAAM,qGAAA,pGAAK,AAAA,6FAAYA,sJACrC,2FAAA,1FAAK,AAAA,mFAAOA,UAAM,CAAG,AAAA,6FAAYA,OACZ,AAACC,0BAAM,iBAAAC,oHAAA,AAAA,oBAAAA,pHAAI,AAAA,2FAAWF;CAAfE;;CAAA;;;;kGANtD,jGAOkB,AAAA,uFAASN,UACzB,OAACL,mBAASO;;AAZlC,AAAAV,mCAAA,sGAAA,6DAAAD,sCAAA,6DAAA,iFAAA",
+ ";AAAA;;;;;;;;;;;;AAQA,iCAAA,sGAAA,6DAAA,mFAAA,0GAAA,8DAAA,mFAAA,8GAAA,mEAAA,SAAA,5sBAACA,iwBAIqB,iCAAA,tBAAKC,MAAKC,EAAEC,cACV,6CAAA,2CAAA,jFAACC,gCAAcH,4GAAeE;;AAEtD,AAAA,AAAAE,wCAAA,uDAAA,5BAEyBE,IAAIC,YAAYC,SAASP,GAC5B,4KAAA,5KAACQ,OAAUF,YAAY,AAACG,+BAAQ,AAAA,yFAAA,AAAAC,0BAAWL;AAC3C,IAAMM,UAAQ,6CAAA,2EAAA,xHAACC,+BAAQ,AAAOJ,mGACxBK,SAAO,AAACC,wBAAI;kBAAAC,UAAA,AAAA,IAAAC,aAAAD,aAAAC,iBAAA,EAAA,AAAAC,+BAAAD,aAAA,AAAAE,0BAAAC,mBAAAH,YAAAA,sBAAAA,0BAAA,AAAAI,wBAAAJ,eAAA,sEAAA,AAAAI,wBAAAJ,eAAA,6EAAA,AAAAI,wBAAAJ,eAAA,yEAAA,AAAAI,wBAAAJ,eAAA,8DAAA,hHAAaK,9GAASC,vHAAOC,xGAAUC,zBAAUC,sdAC/C,oPAAA,AAAA,kDAAA,kEAAA,6DAAA,uDAAA,qDAAA,gHAAA,iDAAA,9qBAAMC,QAAM,aAAA,ZAAKH,mBACXG,YAAM,EAAI,CAAI,AAACC,0BAAMN,aAAUK,QAAO,SAAA,RAAGA,WAASA,WAClDE,MAAI,AAACC,yBAAKR,SAASK,eACnBI,MAAI,CAAGJ,YAAM,AAAUE,YAAI,4BAAA,5BAACG,kCAAeH,oHACrCN,mQAEF,QAAA,PAAKE,UAAME,sJACb,QAAA,PAAKF,UAAMM;;kGATvC,jGAUkB,AAAA,uFAASnB,UACzB,OAACJ,mBAASM;;AAflC,AAAAT,mCAAA,sGAAA,6DAAAD,sCAAA,6DAAA,iFAAA",
  "names":
- ["lt.object/object*", "this", "js-hint-opts", "lt.object/merge!",
+ ["lt.object/object*", "this", "_", "js-hint-opts", "lt.object/merge!",
   "lt.plugins.lt-jshint/__BEH__do-jshint", "lt.object/behavior*",
-  "obj", "editor-text", "callback", "_", "js/JSHINT",
-  "cljs.core/clj->js", "cljs.core/deref", "results",
-  "cljs.core/js->clj", "errors", "cljs.core/map", "err",
-  "cljs.core/count", "or__19803__auto__"]}
+  "obj", "editor-text", "callback", "js/JSHINT", "cljs.core/clj->js",
+  "cljs.core/deref", "results", "cljs.core/js->clj", "errors",
+  "cljs.core/map", "p__21522", "map__21523", "cljs.core/seq?",
+  "cljs.core/apply", "cljs.core/hash-map", "cljs.core/get", "evidence",
+  "reason", "character", "line", "err", "start", "cljs.core/count",
+  "rem", "cljs.core/subs", "end", "cljs.core/re-find"]}
