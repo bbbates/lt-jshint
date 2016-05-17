@@ -1,7 +1,7 @@
 [
  [:app :lt.objs.plugins/load-js ["jshint.js" "lt_jshint_compiled.js"]]
 
-  [:js-hinted :lt.objs.editor.lint/register-linter [:lt.plugins.lt-jshint/js-hinter {}]]
+  [:js-hinted :lt.plugins.lt-lint/register-linter [:lt.plugins.lt-jshint/js-hinter {}]]
 
   [:editor.javascript :lt.object/add-tag :js-hinted]
   [:editor.javascript :lt.object/add-tag :docable] ;; required to show lint messages below the line
