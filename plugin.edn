@@ -1,7 +1,7 @@
 {:name "lt_jshint"
- :version "0.0.1"
+ :version "0.0.2"
  :author "Brendan Bates"
- :source ""
+ :source "https://github.com/bbbates/lt-jshint"
  :desc "Provide JSHINT Linting for Javascript files"
  :behaviors "lt_jshint.behaviors"
  :dependencies {"lt-lint" "0.0.1"}}
