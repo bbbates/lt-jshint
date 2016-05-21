@@ -9,6 +9,7 @@
 (object/object* ::js-hinter
                 :behaviors [::do-jshint]
                 :linter-name "jshint"
+                :timeout 20000
                 :init (fn [this _ js-hint-opts]
                         (object/merge! this {:options js-hint-opts})))
 
@@ -20,7 +21,7 @@
                             errors (map (fn [{:keys [evidence reason character line] :as err}]
                                           (let [start (dec character)
                                                 start (if (<= (count evidence) start) (- start 2) start)
-                                                rem (subs evidence start)
+                                                rem (subs (or evidence "") start)
                                                 end (+ start (.indexOf rem (re-find #".\b" rem)))]
                                             {:message reason
                                              :severity :error ;;TODO: make this a bit smarter
