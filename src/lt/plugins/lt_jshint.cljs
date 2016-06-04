@@ -13,20 +13,27 @@
                 :init (fn [this _ js-hint-opts]
                         (object/merge! this {:options js-hint-opts})))
 
+(def severities
+  {"E" :error
+   "W" :warning
+   "I" :info})
+
+(defn- jshint-err->message
+  [{:keys [evidence code reason character line]}]
+  (let [start (dec character)
+        start (if (<= (count evidence) start) (- start 2) start)
+        rem (subs (or evidence "") start)
+        end (+ start (.indexOf rem (re-find #".\b" rem)))]
+    {:message reason
+     :severity (get severities (first code) :error)
+     :from [(dec line) start]
+     :to [(dec line) end]}))
+
 (behavior ::do-jshint
           :triggers #{:lt.plugins.lt-lint/validate}
           :reaction (fn [obj editor-text callback _]
                       (js/JSHINT editor-text (clj->js (:options @obj)) #js {})
                       (let [results (js->clj (.data js/JSHINT) :keywordize-keys true)
-                            errors (map (fn [{:keys [evidence reason character line] :as err}]
-                                          (let [start (dec character)
-                                                start (if (<= (count evidence) start) (- start 2) start)
-                                                rem (subs (or evidence "") start)
-                                                end (+ start (.indexOf rem (re-find #".\b" rem)))]
-                                            {:message reason
-                                             :severity :error ;;TODO: make this a bit smarter
-                                             :from [(dec line) start]
-                                             :to [(dec line) end]}))
-                                        (:errors results))]
+                            errors (map jshint-err->message (:errors results))]
                         (callback errors))))
 
