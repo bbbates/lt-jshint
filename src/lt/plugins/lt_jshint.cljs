@@ -18,22 +18,34 @@
    "W" :warning
    "I" :info})
 
-(defn- jshint-err->message
-  [{:keys [evidence code reason character line]}]
+(defn- message-to-from
+  [evidence line-contents line character]
   (let [start (dec character)
-        start (if (<= (count evidence) start) (- start 2) start)
-        rem (subs (or evidence "") start)
-        end (+ start (.indexOf rem (re-find #".\b" rem)))]
+        end (if-not (clojure.string/blank? evidence)
+              (let [rem (subs evidence start)
+                    boundary (.indexOf rem (re-find #".\b" rem))]
+                (if (> boundary -1)
+                  (+ character boundary)
+                  character))
+              character)]
+    (if (< (count line-contents) end)
+      [[(dec line) 0] [(dec line) (count line-contents)]]
+      [[(dec line) start] [(dec line) end]])))
+
+(defn- jshint-err->message
+  [ed {:keys [evidence code reason character line]}]
+  (let [line-contents (editor/line ed (dec line))
+        [from to] (message-to-from evidence line-contents line character)]
     {:message reason
-     :severity (get severities (first code) :error)
-     :from [(dec line) start]
-     :to [(dec line) end]}))
+     :severity (get severities (first code) :info)
+     :from from
+     :to to}))
 
 (behavior ::do-jshint
           :triggers #{:lt.plugins.lt-lint/validate}
-          :reaction (fn [obj editor-text callback _]
+          :reaction (fn [obj editor-text callback ed]
                       (js/JSHINT editor-text (clj->js (:options @obj)) #js {})
                       (let [results (js->clj (.data js/JSHINT) :keywordize-keys true)
-                            errors (map jshint-err->message (:errors results))]
+                            errors (map (partial jshint-err->message ed) (:errors results))]
                         (callback errors))))
 
